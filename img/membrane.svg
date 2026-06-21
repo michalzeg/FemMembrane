@@ -1,0 +1,207 @@
+<svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="sans-serif">
+  <!--
+    A finite element mesh for a 2D elastic problem on a square.
+    The nodes are color-coded (a color field map) from a simulation.
+    Boundary conditions include fixed supports and point loads.
+  -->
+
+  <!-- Background for contrast -->
+  <rect width="100%" height="100%" fill="white" />
+
+  <!-- A definition of the mesh field color gradient -->
+  <defs>
+    <radialGradient id="meshGradient" cx="100%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#E74C3C" /> <!-- Red corner (Top Right, high field) -->
+      <stop offset="35%" stop-color="#F1C40F" /> <!-- Yellow -->
+      <stop offset="70%" stop-color="#2ECC71" /> <!-- Green -->
+      <stop offset="100%" stop-color="#21618C" /> <!-- Dark Blue corner (Bottom Left, low field) -->
+    </radialGradient>
+  </defs>
+
+  <!-- The Mesh Field Plane (square) -->
+  <rect x="110" y="80" width="200" height="200" fill="url(#meshGradient)" stroke="none" />
+
+  <!-- Node points (2D coordinates) -->
+  <g id="nodes" fill="#AED6F1" stroke="#34495E" stroke-width="0.5">
+    <!-- Top edge -->
+    <circle cx="110" cy="80" r="3" />
+    <circle cx="150" cy="80" r="3" />
+    <circle cx="190" cy="80" r="3" />
+    <circle cx="230" cy="80" r="3" />
+    <circle cx="270" cy="80" r="3" />
+    <circle cx="310" cy="80" r="3" />
+
+    <!-- Right edge -->
+    <circle cx="310" cy="113.3" r="3" />
+    <circle cx="310" cy="146.6" r="3" />
+    <circle cx="310" cy="180" r="3" />
+    <circle cx="310" cy="213.3" r="3" />
+    <circle cx="310" cy="246.6" r="3" />
+    <circle cx="310" cy="280" r="3" />
+
+    <!-- Bottom edge -->
+    <circle cx="270" cy="280" r="3" />
+    <circle cx="230" cy="280" r="3" />
+    <circle cx="190" cy="280" r="3" />
+    <circle cx="150" cy="280" r="3" />
+    <circle cx="110" cy="280" r="3" />
+
+    <!-- Left edge -->
+    <circle cx="110" cy="246.6" r="3" />
+    <circle cx="110" cy="213.3" r="3" />
+    <circle cx="110" cy="180" r="3" />
+    <circle cx="110" cy="146.6" r="3" />
+    <circle cx="110" cy="113.3" r="3" />
+
+    <!-- Internal nodes (irregular mesh) -->
+    <circle cx="170" cy="110" r="3" />
+    <circle cx="210" cy="106" r="3" />
+    <circle cx="270" cy="120" r="3" />
+    <circle cx="290" cy="98" r="3" />
+    <circle cx="280" cy="150" r="3" />
+    <circle cx="220" cy="140" r="3" />
+    <circle cx="160" cy="150" r="3" />
+    <circle cx="140" cy="180" r="3" />
+    <circle cx="190" cy="170" r="3" />
+    <circle cx="260" cy="190" r="3" />
+    <circle cx="280" cy="210" r="3" />
+    <circle cx="220" cy="230" r="3" />
+    <circle cx="170" cy="220" r="3" />
+    <circle cx="140" cy="240" r="3" />
+    <circle cx="200" cy="260" r="3" />
+    <circle cx="260" cy="250" r="3" />
+    <circle cx="290" cy="260" r="3" />
+  </g>
+
+  <!-- Element Mesh Lines (drawing connecting the nodes) -->
+  <g id="elements" stroke="#34495E" stroke-width="0.75" fill="none">
+    <!-- Outer boundary (square) -->
+    <rect x="110" y="80" width="200" height="200" />
+
+    <!-- Top-row connections -->
+    <path d="M110 80 L170 110 L150 80" />
+    <path d="M170 110 L210 106 L190 80" />
+    <path d="M210 106 L270 120 L230 80" />
+    <path d="M270 120 L290 98 L270 80" />
+    <path d="M290 98 L310 80" />
+    <path d="M110 80 L110 113.3 L170 110" />
+
+    <!-- Middle connections -->
+    <path d="M110 113.3 L160 150 L140 113.3" /> <!-- Fix: connection to node that was wrong -->
+    <path d="M160 150 L220 140 L210 106" />
+    <path d="M220 140 L280 150 L270 120 L290 98" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Added small missing tri lines -->
+    <path d="M270 120 L280 150 L270 113.3" stroke-dasharray="2" stroke-opacity="0.2"/>
+    <path d="M290 98 L310 113.3 L270 120 L290 98 L280 150 Z" /> <!-- Mesh lines to define triangles and quads -->
+    <path d="M110 113.3 L110 146.6 L160 150" />
+    <path d="M110 146.6 L140 180 L160 150 L140 180" />
+    <path d="M140 180 L190 170 L220 140 L160 150 Z" />
+    <path d="M220 140 L260 190 L280 150 L220 140 L260 190 L280 210 L310 213.3" /> <!-- Fix: adding lines to nodes to connect right edge and internal -->
+    <path d="M280 150 L310 146.6 L310 180 L280 150 L280 210 Z" />
+    <path d="M110 146.6 L110 180 L140 180" />
+
+    <!-- Lower connections -->
+    <path d="M110 180 L110 213.3 L140 180" />
+    <path d="M110 213.3 L170 220 L190 170" />
+    <path d="M190 170 L260 190" />
+    <path d="M170 220 L220 230 L260 190 L280 210 Z" />
+    <path d="M310 213.3 L310 246.6 L280 210 Z" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Added simple connection for triangulation -->
+    <path d="M280 210 L290 260 L310 246.6 L310 280 L290 260 Z" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Added lines to right and bottom of internal nodes -->
+    <path d="M110 213.3 L110 246.6 L140 240 L170 220" />
+    <path d="M110 246.6 L110 280 L150 280 L140 240 L170 220" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Fix: connection of left boundary internal elements -->
+    <path d="M140 240 L200 260 L170 220" />
+    <path d="M200 260 L260 250 L220 230" />
+    <path d="M260 250 L290 260 L280 210 Z" />
+    <path d="M260 250 L260 190 L280 210 Z" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Added missing triangulation lines for quads -->
+    <path d="M260 250 L290 260 L310 280 L260 250" stroke-dasharray="2" stroke-opacity="0.2"/> <!-- Missing bottom right tri line-->
+    <path d="M260 250 L270 280 L230 280 L200 260 Z" />
+    <path d="M230 280 L200 260 Z" /> <!-- Fix: adding line to connect nodes -->
+    <path d="M200 260 L150 280 L190 280" /> <!-- Fix: adding line to connect nodes -->
+    <path d="M150 280 L140 240" />
+    <path d="M200 260 L230 280" />
+    <path d="M260 250 L270 280" />
+    <path d="M290 260 L310 280" />
+
+    <!-- Fix: adding missed mesh lines -->
+    <path d="M170 110 L190 170" />
+    <path d="M160 150 L170 220" stroke-dasharray="2" stroke-opacity="0.2"/>
+    <path d="M140 180 L170 220" />
+    <path d="M220 140 L190 170" />
+    <path d="M260 190 L220 230 L220 140" stroke-dasharray="2" stroke-opacity="0.2"/>
+    <path d="M290 260 L310 280" />
+    <path d="M290 98 L270 120" stroke-dasharray="2" stroke-opacity="0.2"/>
+    <path d="M170 110 L160 150 Z" />
+  </g>
+
+  <!-- Point Loads / Arrows along Top Edge -->
+  <g id="topLoads" stroke="#1E88E5" stroke-width="1.5" fill="none">
+    <line x1="130" y1="50" x2="130" y2="76" />
+    <path d="M128,70 L130,76 L132,70" />
+    <line x1="170" y1="50" x2="170" y2="76" />
+    <path d="M168,70 L170,76 L172,70" />
+    <line x1="210" y1="50" x2="210" y2="76" />
+    <path d="M208,70 L210,76 L212,70" />
+    <line x1="250" y1="50" x2="250" y2="76" />
+    <path d="M248,70 L250,76 L252,70" />
+    <line x1="290" y1="50" x2="290" y2="76" />
+    <path d="M288,70 L290,76 L292,70" />
+  </g>
+
+  <!-- Point Loads / Arrows along Right Edge -->
+  <g id="rightLoads" stroke="#1E88E5" stroke-width="1.5" fill="none">
+    <line x1="330" y1="100" x2="314" y2="100" />
+    <path d="M319,98 L314,100 L319,102" />
+    <line x1="330" y1="140" x2="314" y2="140" />
+    <path d="M319,138 L314,140 L319,142" />
+    <line x1="330" y1="180" x2="314" y2="180" />
+    <path d="M319,178 L314,180 L319,182" />
+    <line x1="330" y1="220" x2="314" y2="220" />
+    <path d="M319,218 L314,220 L319,222" />
+    <line x1="330" y1="260" x2="314" y2="260" />
+    <path d="M319,258 L314,260 L319,262" />
+  </g>
+
+  <!-- Boundary Condition Support Symbols (Left Edge: fixed constraints) -->
+  <g id="fixedSupports" fill="none" stroke="#2C3E50" stroke-width="1">
+    <!-- Symbol: 2D clamped / pinned triangle with ground shading -->
+    <path d="M100,105 L110,113.3 L100,121.6 L100,105 L96,105 M96,121.6 L100,121.6" />
+    <line x1="96" y1="109" x2="100" y2="109" />
+    <line x1="96" y1="113" x2="100" y2="113" />
+    <line x1="96" y1="117" x2="100" y2="117" />
+
+    <path d="M100,138.3 L110,146.6 L100,154.9 L100,138.3 L96,138.3 M96,154.9 L100,154.9" />
+    <line x1="96" y1="142" x2="100" y2="142" />
+    <line x1="96" y1="146" x2="100" y2="146" />
+    <line x1="96" y1="150" x2="100" y2="150" />
+
+    <path d="M100,171.6 L110,180 L100,188.3 L100,171.6 L96,171.6 M96,188.3 L100,188.3" />
+    <line x1="96" y1="175" x2="100" y2="175" />
+    <line x1="96" y1="179" x2="100" y2="179" />
+    <line x1="96" y1="183" x2="100" y2="183" />
+
+    <path d="M100,204.9 L110,213.3 L100,221.6 L100,204.9 L96,204.9 M96,221.6 L100,221.6" />
+    <line x1="96" y1="208" x2="100" y2="208" />
+    <line x1="96" y1="212" x2="100" y2="212" />
+    <line x1="96" y1="216" x2="100" y2="216" />
+
+    <path d="M100,238.3 L110,246.6 L100,254.9 L100,238.3 L96,238.3 M96,254.9 L100,254.9" />
+    <line x1="96" y1="242" x2="100" y2="242" />
+    <line x1="96" y1="246" x2="100" y2="246" />
+    <line x1="96" y1="250" x2="100" y2="250" />
+  </g>
+
+  <!-- Boundary Condition Support Symbol (Bottom center: roller constraint) -->
+  <g id="rollerSupport" fill="none" stroke="#2C3E50" stroke-width="1">
+    <!-- Symbol: Triangle above wheels above ground ground shading -->
+    <path d="M201.7,290 L210,280 L218.3,290 L201.7,290" />
+    <circle cx="204.7" cy="293" r="2" />
+    <circle cx="215.3" cy="293" r="2" />
+    <line x1="198" y1="296" x2="222" y2="296" />
+    <line x1="198" y1="296" x2="198" y2="299" />
+    <line x1="202" y1="296" x2="202" y2="299" />
+    <line x1="206" y1="296" x2="206" y2="299" />
+    <line x1="210" y1="296" x2="210" y2="299" />
+    <line x1="214" y1="296" x2="214" y2="299" />
+    <line x1="218" y1="296" x2="218" y2="299" />
+    <line x1="222" y1="296" x2="222" y2="299" />
+  </g>
+</svg>

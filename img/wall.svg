@@ -1,0 +1,29 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Uniformly Distributed Load (UDL) Arrows -->
+  <g stroke="#E74C3C" stroke-width="1.5" fill="none">
+    <path d="M10 25 L10 38 M25 25 L25 38 M40 25 L40 38 M55 25 L55 38 M70 25 L70 38 M85 25 L85 38" />
+    <!-- Arrowheads -->
+    <polyline points="8,34 10,38 12,34" />
+    <polyline points="23,34 25,38 27,34" />
+    <polyline points="38,34 40,38 42,34" />
+    <polyline points="53,34 55,38 57,34" />
+    <polyline points="68,34 70,38 72,34" />
+    <polyline points="83,34 85,38 87,34" />
+    <!-- Top line of the UDL -->
+    <line x1="10" y1="25" x2="85" y2="25" stroke-dasharray="2" stroke-width="1"/>
+  </g>
+
+  <!-- The Beam -->
+  <rect x="10" y="40" width="80" height="6" fill="#2C3E50" />
+
+  <!-- Left Support (Pinned) -->
+  <path d="M5 55 L15 55 L10 46 Z" fill="#7F8C8D" />
+  <line x1="2" y1="59" x2="18" y2="59" stroke="#34495E" stroke-width="1.5" />
+
+  <!-- Right Support (Roller) -->
+  <path d="M80 55 L90 55 L85 46 Z" fill="#7F8C8D" />
+  <circle cx="82.5" cy="57" r="1.5" fill="#7F8C8D" />
+  <circle cx="87.5" cy="57" r="1.5" fill="#7F8C8D" />
+  <line x1="78" y1="59" x2="92" y2="59" stroke="#34495E" stroke-width="1.5" />
+
+</svg>
